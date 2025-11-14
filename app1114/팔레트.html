@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            margin: auto;
+        }
+        .header button{
+            width: 13%;
+            height: 10%;
+        }
+        .content{
+            width: 100%;
+            height: 400px;
+            background-color: black;
+            clear:both;
+        }
+        .header button:nth-child(1){background-color: red;}
+        .header button:nth-child(2){background-color: orange;}
+        .header button:nth-child(3){background-color: yellow;}
+        .header button:nth-child(4){background-color: green;}
+        .header button:nth-child(5){background-color: blue;}
+        .header button:nth-child(6){background-color: navy;}
+        .header button:nth-child(7){background-color: purple;}
+    </style>
+
+    <script>
+        function changeColor(color) {
+            //문서내의 content라는 클래스에 대해 빨간색 배경을 적용!!
+            let content = document.querySelector(".content");
+            content.style.backgroundColor = color;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button onclick="changeColor('red')">red</button>
+            <button onclick="changeColor('orange')">orange</button>
+            <button onclick="changeColor('yellow')">yellow</button>
+            <button onclick="changeColor('green')">green</button>
+            <button onclick="changeColor('blue')">blue</button>
+            <button onclick="changeColor('navy')">navy</button>
+            <button onclick="changeColor('purple')">purple</button>
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+
+
+</body>
+</html>

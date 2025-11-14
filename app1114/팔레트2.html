@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            margin: auto;
+        }
+        .header{
+            width: 100%;
+            height: 100px;
+        }
+        .header div{
+            width: 13.82%;
+            height: 100%;
+            color: black;
+            display: inline-block;
+            margin: 0px;
+        }
+        .content{
+            width: 100%;
+            height: 400px;
+            background-color: black;
+            clear:both;
+        }
+
+        /* 요소가 n번째 자식에 위치한 상태를 가상의 클래스로 봄 */
+        .header div:nth-child(1){background-color: red;}
+        .header div:nth-child(2){background-color: orange;}
+        .header div:nth-child(3){background-color: yellow;}
+        .header div:nth-child(4){background-color: green;}
+        .header div:nth-child(5){background-color: blue;}
+        .header div:nth-child(6){background-color: navy;}
+        .header div:nth-child(7){background-color: purple;}
+
+    </style>
+
+    <script>
+        function setBg(color) {
+            //문서내의 content라는 클래스에 대해 빨간색 배경을 적용!!
+            let content = document.querySelector(".content");
+            content.style.backgroundColor = color;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="box" onmouseover="setBg('red')">red</div>
+            <div class="box" onmouseover="setBg('orange')">orange</div>
+            <div class="box" onmouseover="setBg('yellow')">yellow</div>
+            <div class="box" onmouseover="setBg('green')">green</div>
+            <div class="box" onmouseover="setBg('blue')">blue</div>
+            <div class="box" onmouseover="setBg('navy')">navy</div>
+            <div class="box" onmouseover="setBg('purple')">purple</div>
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+
+
+</body>
+</html>
