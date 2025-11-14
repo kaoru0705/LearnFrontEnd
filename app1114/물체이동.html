@@ -9,14 +9,37 @@
             width: 800px;
             height: 600px;
             background-color: pink;
-            margin: auto;   /* 현재 요소의 좌, 우 여백인 마진을 css가 스스로 계산하여 동일하게 양분함*/
-
+            margin: auto;   /* 현재 요소의 좌, 우 여백인 마진을 css가 스스로 계산하여 동일하게 양분함 */
+            position: relative; /* 자식에게 포지션이 명시되었으므로, 부모도 포지션이 명시되어야 한다. */
         }
         img{
             width:100px;     /*너비만 적용하면, 높이는 알아서 비율로 자동 조절됨*/
+            position:absolute;
+            left:0px;
+            top:0px;
+            /* 자식 요소에 포지션이 설정되면, 반드시 부모에도 포지션이 명시되어야 한다. */
         }
     </style>
     <script>
+
+        
+        let moveXValue = 0;
+        function moveX(sign){
+            let pic = document.getElementById("pic");
+
+            moveXValue += sign * 50;
+            
+            pic.style.left = moveXValue +"px";
+        }
+
+        let moveYValue = 0;
+        function moveY(sign) {
+            let pic = document.getElementById("pic");
+
+            moveYValue += sign * 50;
+            
+            pic.style.top = moveYValue + "px";
+        }
 
     </script>
 </head>
@@ -24,8 +47,10 @@
     <div class="container">
         <img id = "pic" src="https://freesvg.org/img/mysz.png" >
     </div>
-    <button>왼쪽</button>
-    <button>오른쪽</button>
+    <button onclick="moveX(-1)">왼쪽</button>
+    <button onclick="moveX(1)">오른쪽</button>
+    <button onclick="moveY(-1)">위</button>
+    <button onclick="moveY(1)">아래</button>
 
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            /*
+            position: absolute;     absolute는 절대위치이므로, 다른 요소가 이미 자리를 차지해도, 겹쳐서 
+                                        즉 중첩이 가능하다. 즉 다른 요소에 영향을 받지 않음, 즉 절대적이다.
+            background-color: red;
+            left:0px;   부모가 body이므로 body를 기준으로 x값 0에 위치
+            top:0px;    부모가 body이므로 body를 기준으로 y값 0에 위치
+            */
+            background-color: red;
+            position: relative;
+            left: 0px;
+            right: 0px;
+            width: 100px;
+            height: 100px;
+        }
+        #box2{
+            /*
+            position: absolute;
+            background-color: blue;
+            left:0px;
+            top:0px;
+            */
+            /* 초기에 할당받은 위치인 static 위치를 기준으로 한 포지션 */
+            background-color: blue;
+            position:relative;
+            left: 0px;
+            right: 0px;
+
+            width: 75px;
+            height: 75px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        개발자가 아무것도 포지션을 지정하지 않으면 디폴트는 static이다.
+        static은 위치 값을 조정할 수 없다. 따라서 left, top 적용되지 않는다..
+    -->
+</body>
+    <div id="box1">박스1</div>
+    <div id="box2">박스2</div>
+
+</html>
