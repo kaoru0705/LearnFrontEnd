@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select{
+            width: 200px;
+            height: 60px;
+            border: 2px solid skyblue;
+            background-color: blue;
+            color:white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <select id="yy"> <option value=""></option></select>년
+    <select id="mm"></select>월
+    <select id="dd"></select>일
+    <input type="date">
+    <script src="./lib/util.js"></script>
+    <script>
+        // 문서가 실행되면, yy의 자식으로 option tag를 동적으로 생성하여 부착!!
+        let yy = document.getElementById("yy");
+        //yy.style.backgroundColor="yellow";
+
+        for(let i = 2025; i >= 1945; i--) {
+            // 어떤 요소를 body tag에 직접 적는 방법이 아니라, 프로그래밍적으로 동적으로 생성하기
+            let op = document.createElement("option"); // <option></option> 작성한 것과 동일
+            op.text = i; // <option>2025</option> 작성한 것과 동일
+            yy.add(op); // select 박스에 option을 추가!! 한 효과를 냄
+        }
+
+        let mm = document.getElementById("mm");
+        let dd = document.getElementById("dd");
+
+        for(let i = 1; i <= 12; i++) {
+            let op = document.createElement("option");
+            op.text = getZeroNum(i);
+            mm.add(op);
+        }
+
+        for(let i = 1; i <= 31; i++) {
+            let op = document.createElement("option");
+            op.text = getZeroNum(i);
+            dd.add(op); 
+        }
+
+    </script>
+</body>
+</html>
