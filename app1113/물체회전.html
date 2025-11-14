@@ -34,18 +34,24 @@
             document.getElementById("box").style.transform = `rotate(${r}deg)` ;
             //document.getElementById("box").style.transform = `skewY(${n}deg)` ;
 
-
+            // console.log(new Date().getSeconds());
         }
+        
+        let degree = 0;
+        let intervalInvalid;
 
         function rotateImage() {
-            const now = new Date();
-            const seconds = now.getSeconds();
-
-            const degree = seconds * 15;
-
+            degree += 15;
             document.getElementById("box").style.transform = `rotate(${degree}deg)` ;
         }
-        rotateImage();
+
+        function executeAutoRoll() {
+            intervalInvalid = setInterval(()=>roll(1), 16);
+        }
+
+        function pauseAutoRoll() {
+            clearInterval(intervalInvalid);
+        }
     </script>
 </head>
 <body>
@@ -57,6 +63,8 @@
     <div id = "box"></div>
     <button onclick="roll(-1)">왼쪽으로 회전</button> <button onclick="roll(1)">오른쪽으로 회전</button>
     <br>
-    <a href="javascript:roll()">돌리기</a>
+    <button onclick="executeAutoRoll()">자동 회전</button> <button onclick = "pauseAutoRoll()">회전 멈추기</button>
+    <br>
+    <a href="javascript:roll(1)">돌리기</a>
 </body>
 </html>
