@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            이미지 뒤에 오는 텍스트들의 높이가 너무 작아서, 이미지와 같은 수평선 상의 라인에 존재함에도 불구하고
+            사용자들이 보기에는 부자연스러운 현상이 발생함.. 즉 이미지 우측에 여백이 있는 것처럼 느껴짐...
+            이러한 문제를 해결하려면, 어쩔 수 없이 이미지를 정상위치에서 벗어나게 해야 한다..
+            즉 좌 또는 우측으로 띄워야 한다.. float
+        */
+        img{
+            float: left;
+        }
+        /*
+            block 요소는 float 요소를 인식할 수 없으므로, float 요소의 빈자리에 아무것도 없다고 생각하며
+            침투해 버린다.
+            inline요소는 float된 요소를 인식할 수 있으므로, float 요소의 빈자리를 침범하지 않는다.
+            주의) text가 인라인이다? 맞다 그 이유? html에서는 text조차 요소로 간주되고, 모든 요소는 inline or block이므로, 텍스트는 inline에 속함
+        */
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbx3Z7RTCfmaL-mP3MRQLQduzX2yAUHE7OkQ&s">
+    <div id = "box">block은 float요소를 인식할 수 없다.</div>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor sequi quidem quis nobis ipsa atque magni soluta fugiat, delectus, asperiores dignissimos? Odio illo dicta soluta tempore harum alias molestias dolore.
+    Temporibus molestias ab dolore! Perferendis atque dicta libero soluta ipsa incidunt ipsam esse commodi, eius quia nesciunt error recusandae mollitia minus inventore veritatis voluptatum nihil quis blanditiis debitis facere earum.
+    Possimus recusandae sit quis accusantium assumenda consequuntur repudiandae eius aliquam voluptas, sint aperiam, error quisquam necessitatibus laudantium labore veritatis debitis saepe ea provident. Molestiae, excepturi. Earum deserunt animi atque voluptates?
+    Qui repudiandae eligendi inventore nemo tenetur iure vel autem ipsum ullam quo molestias soluta, eos fuga ex, in vitae possimus adipisci odio aliquid. Consectetur eos rem labore nostrum, debitis veritatis.
+    Ab dignissimos dolor, architecto molestiae at assumenda, error veniam aperiam eius tenetur itaque temporibus. Quis voluptas itaque ab, soluta quam veritatis impedit labore aperiam cupiditate accusantium aliquam voluptatum, tempora quas?
+    Aut debitis, quos sapiente veritatis iusto adipisci ducimus, reprehenderit, soluta voluptatem tempore ipsum illum impedit veniam a neque. Earum nihil fugiat est error beatae. Ipsa optio qui magnam dolorem officiis!
+    Facilis eos, nobis eveniet iure et quibusdam maxime, nulla minus aliquam deserunt, sequi animi corporis. Eaque aliquam ad voluptatum fugit tempora ea, corporis, ducimus nesciunt voluptatibus nam reprehenderit possimus id.
+    Error, explicabo exercitationem pariatur nihil sequi non, inventore culpa perspiciatis voluptatibus officia officiis adipisci sed facilis architecto. Molestias neque nam eligendi, totam officiis aperiam! Dignissimos dolores nesciunt officia non autem!
+    Perspiciatis vel laudantium delectus natus! Hic perspiciatis, nobis accusantium animi fuga ipsa ea harum veniam omnis veritatis minima similique itaque delectus corporis laboriosam autem neque, provident sit facere nihil. Accusamus?
+    Minima rem quo enim magni vitae velit suscipit voluptas assumenda quis sed officiis dolores magnam, voluptate distinctio eos temporibus, ex natus iusto inventore delectus aliquam totam. Voluptate provident corporis aspernatur?
+</body>
+</html>
