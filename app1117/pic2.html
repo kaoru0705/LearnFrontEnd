@@ -45,13 +45,11 @@
         function setImg(i) {
             index = i;
 
-            selectPic = document.querySelector(`.aside img:nth-child(${prevIndex + 1})`);
-            selectPic.style.opacity = 1;
+            capturePic(prevIndex, 1);
 
             prevIndex = index;
             
-            selectPic = document.querySelector(`.aside img:nth-child(${index + 1})`);
-            selectPic.style.opacity = 0.5;
+            capturePic(index, 0.5);
 
             pic = document.querySelector(".content");
             pic.src = `../images/geographic/${photoArr[index]}.jpg`;
@@ -65,13 +63,16 @@
             //시각화 - 문서내의 큰 이미지의 경로를 현재 배열값으로 바꾸자!
             content.src = `../images/geographic/${photoArr[index]}.jpg`; //js가 css의 선택자를 이용하여 문서에 접근하
             
-            selectPic = document.querySelector(`.aside img:nth-child(${prevIndex + 1})`);
-            selectPic.style.opacity = 1;
+            capturePic(prevIndex, 1);
 
             prevIndex = index;
 
-            selectPic = document.querySelector(`.aside img:nth-child(${index + 1})`);
-            selectPic.style.opacity = 0.5;
+            capturePic(index, 0.5);
+        }
+
+        function capturePic(i, op) {
+            selectPic = document.querySelector(`.aside img:nth-child(${i + 1})`);
+            selectPic.style.opacity = op;
         }
 
     </script>
