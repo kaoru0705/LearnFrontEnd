@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 400px;
+            height: 600px;
+            background-color: black;
+            margin: auto;
+        }
+        .txt{
+            width: 100%;
+            height: 200px;
+            background-color: aqua;
+            font-size: 85px;
+            text-align: center;
+            line-height: 200px;
+        }
+        .keyinput{
+            width: 100%;
+            height: 150px;
+            background-color: blue;
+            text-align: center;
+        }
+        .keyinput input{
+            width: 96%;
+            height: 98%;
+            font-size: 75px;
+        }
+        .feedback{
+            width: 100%;
+            height: 150px;
+            background-color: aliceblue;
+            font-size:90px;
+            font-weight: bold;
+            line-height: 150px;
+            text-align: center;
+        }
+        .footer{
+            width: 100%;
+            height: 100px;
+            background-color: aquamarine;
+            font-size:50px;
+            font-weight: bold;
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        let word = ["광화문", "마우스", "토끼", "지우개", "척척박사", "오징어", "고구마", "호떡", "말미잘", "다랑어"];
+        let index = parseInt(Math.random() * word.length);
+        let score = 0;
+
+         // 문서내의 txt라는 클래스 요소의 태그와 태그 사이에 문자열 껴넣기!!
+        function init() {
+            let txt = document.querySelector(".txt");
+            txt.innerText= word[index];
+            printScore();
+        }
+
+
+        function next() {
+            // 문서내의 txt라는 클래스를 갖는 요소의 InnerText에 다음 배열값 출력
+            let feedback = document.querySelector(".feedback")
+            if(event.keyCode == 13){
+                if(document.querySelector(".keyinput input").value === document.querySelector(".txt").innerText) { // word[index]랑 비교해도 된다.
+                    let txt = document.querySelector(".txt");
+                    index++;
+                    if(index >= word.length) index = 0;
+                    txt.innerText = word[index];
+                    
+                    
+                    // OX 피드백
+                    feedback.innerText="O";  // 맞음의 시각화
+                    document.querySelector(".keyinput input").value = "";
+                    score += 10;
+                    printScore();
+                    feedback.style.color = "green";
+                } else{
+                    feedback.innerText="X";
+                    score -= 5;
+                    printScore();
+                    feedback.style.color = "red";
+                    document.querySelector(".keyinput input").value = "";
+                }
+            }
+        }
+
+        // 점수 출력 함수(게임 진행에 있어 재사용성이 높으면 함수로 정의, 즉 점수는 수시로 출력해야 하므로)
+        function printScore() {
+            let footer = document.querySelector(".footer");
+            footer.innerText = score;
+        }
+
+        
+    </script>
+</head>
+<!-- HTML 문서가 모두 로드되면, 발생하는 이벤트인 load 이벤트를 처리하는 onLoad 이벤트 핸들러 -->
+<body onLoad="init()">
+    <div class="container">
+        <div class="txt"></div>
+        <div class="keyinput">
+            <input type="text" onKeyUp="next()">
+        </div>
+        <div class="feedback"></div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
