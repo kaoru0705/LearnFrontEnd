@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 650px;
+            background-color: aquamarine;
+            margin: auto;
+        }
+        .aside_regist{
+            width: 150px;
+            height: 100%;
+            background-color: antiquewhite;
+            float:left;
+        }
+        .content{
+            width: 500px;
+            height: 100%;
+            background-color: blue;
+            float:left;
+        }
+        .header{
+            width: 100%;
+            height: 50px;
+            background-color: yellow;
+        }
+        .list{
+            width: 100%;
+            height: 600px;
+            background-color: aquamarine;
+        }
+        .aside_detail{
+            width: 150px;
+            height: 100%;
+            background-color: blueviolet;
+            float:left;
+        }
+        .aside_regist input, .aside_detail input{
+            width: 80%;
+        }
+    </style>
+    <script>
+        let memberList = new Array();       // 크기를 결정하면 말자.. 왜? 몇 명이 가입할지 예상이 불가능하므로
+                                            // 현재까지는 1차원 배열이지만 첫회원 배열이 추가될 때부터는 2차원이 된다.
+        // 가입폼에서 등록하 한 사람에 대한 정보를, 먼저 1차원 배열에 담자..
+        // 그 후, 회원의 목록을 보관하기 위한 또 하나의 큰 배열에 생성된 1차원 배열을 추가하자!!
+        // 결국 배열에 또 다른 배열이 추가되므로, 최종적으로는 2차운 배열인 표 형태가 완성된다!!
+        // 메모리 데이터 베이스가 완성된다!
+        function regist() {
+            let member = new Array(3);    // 길이가 3인 비어 있는 배열 선언
+            member[0] = document.getElementById("id").value;
+            member[1] = document.getElementById("pwd").value;
+            member[2] = document.getElementById("name").value;
+
+            // 한 사람에 대한 정보를 담은 member 배열을, 회원들을 모아놓게 될 memberList 배열에 push
+            memberList.push(member);
+            console.log(memberList);
+            //console.log(`현재까지 누적된 회원은 ${memberList.length}명입니다.`);
+            getList();
+        }
+
+        // 회원의 목록을 출력하는 함수, 왜 함수로 정의해놓았나?
+        // 회원의 목록은 가입, 삭제, 수정 시 수시로 실행할 코드이므로 재사용성이 높아야 좋음.. 따라서 함수로 정의
+        function getList(){
+            let list = document.querySelector(".list");
+
+            let tag = "";   // list에 출력할 태그를 모아놓을 변수
+            tag += "<table border = " + 1 + "px width = " + 100 + "%>";
+            tag += "<thead>";
+            tag += "<tr>";
+            tag += "<th>ID</th>";
+            tag += "<th>Pwd</th>";
+            tag += "<th>Name</th>";
+            tag += "</tr>";
+            tag += "</thead>";
+            tag += "<tbody>";
+            for(let i = 0; i < memberList.length; i++) {
+                tag += "<tr>";
+
+                for(let j = 0; j < memberList[i].length; j++) {
+                    tag += `<td> ${memberList[i][j]} </td>`;
+                }
+                tag += "</tr>";
+            }
+
+            tag += "</tbody>";
+            tag += "</table>";
+
+            list.innerHTML = tag;
+        }
+        // 태그에 직접 이벤트 핸들러를 연결해도 되지만, 만일 이 태그가 사라지면 코드도 함께 사라지므로,
+        // 가급적 이벤트 연결은 프로그래밍 언어로 처리하자
+        function init() {
+            console.log("init()");
+            let bt_regist = document.querySelector(".aside_regist button");
+            bt_regist.addEventListener("click", () => regist());
+        }
+
+        // js 전역 영역은 js의 window 객체로 표현됨
+        // 전역 객체는 생략이 가능
+        // window.alert();      사실 window 생략됨 
+        // 이벤트 구현 시 사용되는 이름없는 익명 함수의 역할을 가리켜 콜백(callback)함수라 한다.
+        // 왜 콜백이라는 용어를 쓰나? 일반적으로 함수는 개발자가 원하는 시점에 직접 호출하여 사용하는 반면,
+        // 콜백함수란, 특정 이벤트나 조건이 발생했을 때, 시스템이 역으로 개발자가 정의해 놓은 함수를 호출해준다 하여
+        // 콜백이라 함..
+        window.addEventListener("load", () => init());      // == addEventListener("load", () => init());
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="aside_regist">
+            <input type="text" placeholder="Your ID" id = "id">
+            <input type="text" placeholder="Your Password" id = "pwd">
+            <input type="text" placeholder="Your Name" id = "name">
+            <button>가입 </button>
+        </div>
+        <div class="content">
+            <div class="header"></div>
+            <div class="list">
+            </div>
+        </div>
+        <div class="aside_detail">
+            <input type="text" placeholder="Your ID">
+            <input type="text" placeholder="Your Password">
+            <input type="text" placeholder="Your Name">
+            <button>삭제 </button>
+            <button>수정 </button>
+        </div>
+    </div>
+</body>
+</html>

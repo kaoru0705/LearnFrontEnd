@@ -41,6 +41,7 @@
         let txt=``;     // 문자열을 누적할 변수
         let img;        // 다른 함수에서도 접근하기 위해, 전역변수로 빼놓았다.
         let i = 0;
+        let degree = 0;
 
         function move(){
             let x = event.clientX;  // 마우스의 x좌표
@@ -52,7 +53,7 @@
             // 이때 사용하는 메서드가 바로 push()이다!!
             let pos = [x, y];
             posList.push(pos);
-            //posList.push(new Array([x, y]));
+            //posList.push(new Array(x, y));
 
             document.querySelector(".aside").innerText = txt;
             // 이 함수를 호출할 때마다, div 요소를 동적(=runtime 실행 시)으로 생성하여 content div 화면에 부착!!
@@ -99,10 +100,16 @@
             if(i == posList.length) return;
             img.style.left = posList[i][0] - 20 + "px";
             img.style.top = posList[i][1] - 20 + "px";
+
+            degree += 90;
+            img.style.transform = `rotate(${degree}deg)`;
+
             i++;
         }
         function auto() {
-            setInterval(manual, 300);
+            setInterval(manual, 100);
+            // 엉킴을 방지하기 위해 버튼을 비활성화 시키자
+            // 문서 내의 자동 버튼을 비활성화 시키자
         }
     </script>
 </head>
@@ -112,7 +119,7 @@
         </div>
         <div class="aside"></div>
         <button onclick="manual()">수동</button>
-        <button onclick="auto()">자동</button>
+        <button onclick="auto()" id="bt_auto">자동</button>
     </div>
 </body>
 </html>
