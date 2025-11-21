@@ -42,6 +42,9 @@
         let img;        // 다른 함수에서도 접근하기 위해, 전역변수로 빼놓았다.
         let i = 0;
         let degree = 0;
+        const OFFSET = 20;
+        const INNITIALPOSX = 50;
+        const INITIALPOSY = 100;
 
         function move(){
             let x = event.clientX;  // 마우스의 x좌표
@@ -88,8 +91,8 @@
             // 2) relative: 현재 자신의 본연의 위치를 기준으로 한 위치 속성
             // 현재 캐릭터는 부모인 content div를 기준으로 위치를 지정할 것이므로, absolute로 지정해야 한다.
             img.style.position = "absolute";
-            img.style.left = `50px`;
-            img.style.top = `100px`;
+            img.style.left = INNITIALPOSX + "px";
+            img.style.top = INITIALPOSY + "px";
 
 
             //부모 요소를 content로 두고, 그 안에 자식으로 부착
@@ -99,8 +102,11 @@
         // 순서대로 접근해보자
         function manual() {
             if(i == posList.length) return;
-            img.style.left = posList[i][0] - 20 + "px";
-            img.style.top = posList[i][1] - 20 + "px";
+            img.style.left = posList[i][0] - OFFSET + "px";
+            img.style.top = posList[i][1] - OFFSET + "px";
+            if(i == 0) ;
+            
+            //let angle = 
 
             degree += 90;
             img.style.transform = `rotate(${degree}deg)`;

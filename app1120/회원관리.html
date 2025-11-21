@@ -61,6 +61,23 @@
             console.log(memberList);
             //console.log(`현재까지 누적된 회원은 ${memberList.length}명입니다.`);
             getList();
+
+            // 입력했던 텍스트 박스 데이터 초기화
+            // 메모리에 올라온 DOM객체를 접근하는 방법은 여러가지가 있다.
+            // document.getElementById(), document.querySelector()... 등등
+            // HTML의 부모 자식 관계는, DOM요소에도 영향을 미친다.
+            // document.form1.reset();
+            document.getElementById("id").value = "";
+            document.getElementById("pwd").value = "";
+            document.getElementById("name").value = "";
+        }
+
+        // 유저가 목록에서 선택한 유저 한명에 대한 자세한 저옵를 우측 영역에 출력하기
+        // 함수에 매개변수를 선언한다는 것은, 이 함수의 호출자가 그 값을 결정하기 위함...
+        function getDetail(v1, v2, v3){
+            document.getElementById("id2").value = v1;
+            document.getElementById("pwd2").value = v2;
+            document.getElementById("name2").value = v3;
         }
 
         // 회원의 목록을 출력하는 함수, 왜 함수로 정의해놓았나?
@@ -79,8 +96,9 @@
             tag += "</thead>";
             tag += "<tbody>";
             for(let i = 0; i < memberList.length; i++) {
-                tag += "<tr>";
 
+                // 아래 코드에서 this란? mouseover 이벤트를 일으킨 주체인 tr DOM을 가리킴
+                tag += "<tr onMouseOver='this.style.background = \"yellow\";this.style.cursor=\"pointer\"' onMouseOut = 'this.style.background = \"none\"' onClick = 'getDetail(\"" + memberList[i][0] + "\", \"" + memberList[i][1] + "\", \"" + memberList[i][2] + "\")'>";
                 for(let j = 0; j < memberList[i].length; j++) {
                     tag += `<td> ${memberList[i][j]} </td>`;
                 }
@@ -113,10 +131,18 @@
 <body>
     <div class="container">
         <div class="aside_regist">
-            <input type="text" placeholder="Your ID" id = "id">
-            <input type="text" placeholder="Your Password" id = "pwd">
-            <input type="text" placeholder="Your Name" id = "name">
-            <button>가입 </button>
+            <form name="form1">
+                <input type="text" placeholder="Your ID" id = "id">
+                <input type="text" placeholder="Your Password" id = "pwd">
+                <input type="text" placeholder="Your Name" id = "name">
+                <!-- 
+                    버튼은 type을 명시하지 않은 상태로 form 태그에 넣으면
+                    자동으로 type="submit"이 되어버린다.. submit은 현재 form 양식으로 감싸진 모든 요소를 서버로 전송해버린다.. 현재 우리가 action(서버의 url) 명시하지 않았기 때문에
+                    제자리 문서 새로고침효과가 나버림..
+                    해결책) button의 type을 button으로 명시
+                 -->
+                <button type="button">가입 </button>
+            </form>
         </div>
         <div class="content">
             <div class="header"></div>
@@ -124,9 +150,9 @@
             </div>
         </div>
         <div class="aside_detail">
-            <input type="text" placeholder="Your ID">
-            <input type="text" placeholder="Your Password">
-            <input type="text" placeholder="Your Name">
+            <input type="text" placeholder="Your ID" id = "id2">
+            <input type="text" placeholder="Your Password" id = "pwd2">
+            <input type="text" placeholder="Your Name" id = "name2">
             <button>삭제 </button>
             <button>수정 </button>
         </div>
