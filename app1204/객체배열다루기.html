@@ -1,0 +1,39 @@
+<script>
+    /* 다수의 객체리터럴을 JSON 문자열로 다루는 법 */
+
+    let memberList=[
+        {
+            id: "batman",
+            name: "철수",
+            age: 30
+        },
+        {
+            id: "antman",
+            name: "영희",
+            age: 24,
+            pets: [
+                {
+                    name:"뽀미",
+                    age:3,
+                    type:"말티즈"
+                },
+                {
+                    name:"야옹이",
+                    age:4,
+                    type:"사향고양이"
+                }
+            ]
+        },
+        {
+            id: "xman",
+            name: "민수",
+            age: 29
+        },
+    ];
+    
+    // 객체 리터럴 배열을 JSON
+    let data = JSON.stringify(memberList);
+
+    
+
+</script>
